@@ -4,6 +4,8 @@
 set -o errexit  # Exit on error
 
 echo "Starting Render build process..."
+echo "Python version: $(python --version)"
+echo "Pip version: $(pip --version)"
 
 # Upgrade pip
 pip install --upgrade pip
@@ -18,12 +20,14 @@ python -c "
 import os
 import sys
 sys.path.append('.')
-from app.database import engine, Base
 try:
+    from app.database import engine, Base
     Base.metadata.create_all(bind=engine)
     print('✅ Database tables created successfully')
 except Exception as e:
     print(f'❌ Database creation error: {e}')
+    import traceback
+    traceback.print_exc()
     sys.exit(1)
 "
 
