@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* WindBorne Systems Vendor Dashboard Design System */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 248 250 252;
+    --foreground: 15 23 42;
+
+    /* Card system */
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    /* Popover system */
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+
+    /* Corporate blue primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 248 250 252;
+    --primary-dark: 217 91% 50%;
+    
+    /* Professional secondary */
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 248 250 252;
+
+    /* Muted grays */
+    --muted: 210 40% 96%;
+    --muted-foreground: 100 7% 23%;
+
+    /* Accent system */
+    --accent: 210 40% 94%;
+    --accent-foreground: 15 23 42;
+
+    /* Status colors */
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 26 83% 14%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
+
+    /* Border and input */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    /* Dashboard specific colors */
+    --dashboard-bg: 248 250 252;
+    --dashboard-nav: 255 255 255;
+    --metric-positive: 142 76% 36%;
+    --metric-negative: 0 72% 51%;
+    --metric-neutral: 100 7% 23%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    --gradient-card: linear-gradient(145deg, hsl(255 255 255 / 0.8), hsl(255 255 255 / 0.4));
+    
+    /* Shadows */
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-elevated: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+    --shadow-hover: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-white;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    @apply bg-white text-foreground font-sans antialiased;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    -webkit-overscroll-behavior: none;
+    -webkit-overscroll-behavior-y: none;
+  }
+
+  /* Ensure root and app container have white background */
+  #root {
+    @apply bg-white min-h-screen;
+    overscroll-behavior: none;
+  }
+}
+
+@layer components {
+  /* Dashboard Card Variants */
+  .dashboard-card {
+    @apply bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .dashboard-card-elevated {
+    @apply dashboard-card shadow-lg hover:shadow-xl;
+  }
+
+  /* Metric Display Components */
+  .metric-positive {
+    @apply text-emerald-600;
+  }
+
+  .metric-negative {
+    @apply text-red-600;
+  }
+
+  .metric-neutral {
+    @apply text-slate-600;
+  }
+
+  /* Risk Indicators */
+  .risk-low {
+    @apply bg-emerald-100 text-emerald-800;
+  }
+
+  .risk-medium {
+    @apply bg-amber-100 text-amber-800;
+  }
+
+  .risk-high {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Table Enhancements */
+  .table-header {
+    @apply bg-white border-b border-border sticky top-0 z-10 shadow-sm;
+  }
+
+  .table-row {
+    @apply border-b border-border hover:bg-slate-50 transition-colors;
+  }
+
+  /* Custom Scrollbar Styles */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-corner {
+    background: #f1f5f9;
+  }
+}
