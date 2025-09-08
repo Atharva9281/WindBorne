@@ -17,13 +17,13 @@ export function RiskAnalysisPanel({ vendors }: RiskAnalysisPanelProps) {
   const mediumRiskVendors = vendors.filter(v => v.riskLevel === 'medium');
   const highRiskVendors = vendors.filter(v => v.riskLevel === 'high');
 
-  const averageMargin = vendors.reduce((sum, v) => sum + v.profitMargin, 0) / vendors.length;
-  const topPerformer = vendors.reduce((prev, current) => 
+  const averageMargin = vendors.length > 0 ? vendors.reduce((sum, v) => sum + v.profitMargin, 0) / vendors.length : 0;
+  const topPerformer = vendors.length > 0 ? vendors.reduce((prev, current) => 
     (prev.profitMargin > current.profitMargin) ? prev : current
-  );
-  const worstPerformer = vendors.reduce((prev, current) => 
+  ) : null;
+  const worstPerformer = vendors.length > 0 ? vendors.reduce((prev, current) => 
     (prev.profitMargin < current.profitMargin) ? prev : current
-  );
+  ) : null;
 
   return (
     <div className="dashboard-card p-6">
@@ -92,12 +92,18 @@ export function RiskAnalysisPanel({ vendors }: RiskAnalysisPanelProps) {
               <span className="font-medium text-foreground">Top Performer</span>
             </div>
             <div className="text-sm">
-              <span className="font-semibold text-primary">{topPerformer.name}</span>
-              <span className="text-muted-foreground"> with </span>
-              <span className="font-semibold text-emerald-600">
-                {topPerformer.profitMargin.toFixed(1)}%
-              </span>
-              <span className="text-muted-foreground"> profit margin</span>
+              {topPerformer ? (
+                <>
+                  <span className="font-semibold text-primary">{topPerformer.name}</span>
+                  <span className="text-muted-foreground"> with </span>
+                  <span className="font-semibold text-emerald-600">
+                    {topPerformer.profitMargin.toFixed(1)}%
+                  </span>
+                  <span className="text-muted-foreground"> profit margin</span>
+                </>
+              ) : (
+                <span className="text-muted-foreground">No data available</span>
+              )}
             </div>
           </div>
 
@@ -107,12 +113,18 @@ export function RiskAnalysisPanel({ vendors }: RiskAnalysisPanelProps) {
               <span className="font-medium text-foreground">Needs Attention</span>
             </div>
             <div className="text-sm">
-              <span className="font-semibold text-primary">{worstPerformer.name}</span>
-              <span className="text-muted-foreground"> with </span>
-              <span className="font-semibold text-red-600">
-                {worstPerformer.profitMargin.toFixed(1)}%
-              </span>
-              <span className="text-muted-foreground"> profit margin</span>
+              {worstPerformer ? (
+                <>
+                  <span className="font-semibold text-primary">{worstPerformer.name}</span>
+                  <span className="text-muted-foreground"> with </span>
+                  <span className="font-semibold text-red-600">
+                    {worstPerformer.profitMargin.toFixed(1)}%
+                  </span>
+                  <span className="text-muted-foreground"> profit margin</span>
+                </>
+              ) : (
+                <span className="text-muted-foreground">No data available</span>
+              )}
             </div>
           </div>
         </div>

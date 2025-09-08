@@ -100,8 +100,9 @@ export function FinancialRecommendations({ vendors }: FinancialRecommendationsPr
       return acc;
     }, {} as Record<string, number>);
 
-    const dominantIndustry = Object.entries(industryBreakdown).reduce((a, b) => a[1] > b[1] ? a : b);
-    if (dominantIndustry[1] / vendors.length > 0.7) {
+    const entries = Object.entries(industryBreakdown);
+    const dominantIndustry = entries.length > 0 ? entries.reduce((a, b) => a[1] > b[1] ? a : b) : ['', 0] as [string, number];
+    if (vendors.length > 0 && dominantIndustry[1] / vendors.length > 0.7) {
       recommendations.push({
         id: 'concentration-risk',
         priority: 'medium',
