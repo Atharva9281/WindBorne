@@ -1,15 +1,7 @@
-// API configuration for different environments
-const config = {
-  development: {
-    API_BASE: 'http://localhost:8000/api',
-  },
-  production: {
-    API_BASE: 'https://windborne-backend.onrender.com/api',  // Replace with your Render backend URL
-  }
-};
+// API configuration using environment variables
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
-const environment = process.env.NODE_ENV || 'development';
-export const { API_BASE } = config[environment];
+export { API_BASE };
 
 // Export configuration object
 export default {

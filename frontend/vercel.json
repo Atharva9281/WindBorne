@@ -5,7 +5,8 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "VITE_API_BASE_URL": "https://windborne-ei2u.onrender.com/api"
   },
   "rewrites": [
     {
