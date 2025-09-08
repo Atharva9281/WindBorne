@@ -4,13 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from app.routers import vendors, portfolio, export, cache
-from app.database import engine, Base
+from app.database import init_db
+from app.models import vendor, cache as cache_models  # Import all models
 
 # Load environment variables
 load_dotenv()
-
-# Create database tables on startup
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="WindBorne Vendor Dashboard API",
@@ -39,6 +37,12 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database tables on startup"""
+    init_db()
+    print("Database tables created successfully")
 
 # Include routers
 app.include_router(vendors.router, prefix="/api", tags=["vendors"])
