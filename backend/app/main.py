@@ -20,6 +20,7 @@ app = FastAPI(
 
 # Production CORS configuration
 origins = [
+    "https://wind-borne-nine.vercel.app",  # your deployed frontend
     "http://localhost:3000",  # Local development
     "http://localhost:5173",  # Vite dev server
     "http://localhost:8080",  # Alternative local port
